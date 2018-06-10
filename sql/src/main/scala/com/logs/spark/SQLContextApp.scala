@@ -4,6 +4,7 @@ import org.apache.spark.sql.SQLContext
 import org.apache.spark.SparkConf
 
 /**
+  * Spark 版本 1.6.1
   * SQLContext的使用
   */
 object SQLContextApp {
