@@ -10,6 +10,14 @@ object DatasetApp {
     // spark解析csv文件
     val df = spark.read.option("header", "true").option("inferSchema", "true").csv(path)
     df.show()
+    // DataFrame 转为 DataSet
+    // 注意隐式转换
+    import spark.implicits._
+    val ds = df.as[Sales]
+    ds.map(line => line.itemId).show()
 
+    spark.stop()
   }
+
+  case class Sales(transactionId: Int, customerId: Int, itemId: Int, amountPaid: Double)
 }
