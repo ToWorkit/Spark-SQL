@@ -27,6 +27,9 @@ object SQLContextApp {
     people.printSchema()
     people.show()
 
+    // 以parquet的格式写入
+    people.write.format("parquet").save(path)
+
     // 3、关闭资源
     sc.stop()
   }
