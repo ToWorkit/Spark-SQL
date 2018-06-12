@@ -3,6 +3,8 @@ package com.logs.log
 import org.apache.spark.sql.{DataFrame, SparkSession}
 import org.apache.spark.sql.functions._
 
+import scala.collection.mutable.ListBuffer
+
 /**
   * topN统计Spark作业
   */
@@ -44,6 +46,28 @@ object TopNStatJob {
       */
     accessDF.createOrReplaceTempView("access_logs")
     val videoAccessTopNDF = spark.sql("select day,cmsId,count(1) as times from access_logs where day='20170511' and cmsType='video' group by day,cmsId order by times desc")
-    videoAccessTopNDF.show(false)
+    // videoAccessTopNDF.show(false)
+
+    /**
+      * 将统计结果写入到MySQL中
+      */
+    try {
+      // 构建
+      videoAccessTopNDF.foreachPartition(partitionOfRecords => {
+        // 集合操作
+        val list = new ListBuffer[DayVideoAccessStat]
+        partitionOfRecords.foreach(info => {
+          val day = info.getAs[String]("day")
+          val cmsId = info.getAs[Long]("cmsId")
+          val times = info.getAs[Long]("times")
+
+          list.append(DayVideoAccessStat(day, cmsId, times))
+        })
+
+        StatDAO.insertDayVideoAccessTopN(list)
+      })
+    } catch {
+      case e: Exception => e.printStackTrace()
+    }
   }
 }
