@@ -30,7 +30,4 @@ object MySQLUtils {
     }
   }
 
-  def main(args: Array[String]): Unit = {
-    println(getConnection())
-  }
 }
