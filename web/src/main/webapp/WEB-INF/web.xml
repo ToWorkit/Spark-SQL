@@ -4,4 +4,14 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+
+  <servlet>
+    <servlet-name>stat</servlet-name>
+    <servlet-class>com.imooc.web.VideoAccessTopNServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>stat</servlet-name>
+    <url-pattern>/stat</url-pattern>
+  </servlet-mapping>
 </web-app>
