@@ -15,12 +15,12 @@ object HiveContextApp {
     // sparkConf.setAppName("SQLContextAPP").setMaster("local[2]")
 
     // 通过源码查看SparkContext需要SparkConf作为参数
-    val sc = new SparkContext(sparkConf)
+    val ssc = new SparkContext(sparkConf)
     // 通过源码查看HiveContext需要SparkContext作为参数
-    val hiveContext = new HiveContext(sc)
+    val hiveContext = new HiveContext(ssc)
     // 2、相关操作
     hiveContext.table("emp").show()
     // 3、关闭资源
-    sc.stop()
+    ssc.stop()
   }
 }

@@ -16,7 +16,7 @@ object ParquetApp {
     userDF.show()
     // 查看指定的数据
     userDF.select("name", "favorite_color").show()
-    // 提取指定的数据以json格式保存 有待解决bug
+    // 提取指定的数据以json格式保存 有待解决bug(去copy环境hadoop 的 *.exe ERROR)
     userDF.select("name", "favorite_color").write.format("json").save("C:\\Users\\Just Do It\\Desktop\\iommc_data\\data\\user")
 
     /**
