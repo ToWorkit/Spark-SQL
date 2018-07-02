@@ -11,7 +11,7 @@ object DataFrameApp {
     val spark = SparkSession.builder().appName("DataFrameApp").master("local[2]").getOrCreate()
 
     // 2、操作 将json文件加载成一个DataFrame
-    val peopleDF = spark.read.format("json").load("C:\\Users\\Just Do It\\Desktop\\iommc_data\\people.json")
+    val peopleDF = spark.read.format("json").load("C:\\Users\\Just Do It\\Desktop\\data\\imooc_spark_sql\\people.json")
     // 输出DataFrame对应的信息
     peopleDF.printSchema()
     // 输出内容, 默认展示20条，可以传入参数

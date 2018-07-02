@@ -12,7 +12,7 @@ object DataFrameCase {
 
     // 2、操作
     // RDD ==> DataFrame
-    val rdd = spark.sparkContext.textFile("C:\\Users\\Just Do It\\Desktop\\iommc_data\\data\\student.data")
+    val rdd = spark.sparkContext.textFile("C:\\Users\\Just Do It\\Desktop\\data\\imooc_spark_sql\\data\\student.data")
     // 需要导入隐式转换, 转为DataFrame
     import spark.implicits._
     // 注意转义字符
@@ -25,10 +25,10 @@ object DataFrameCase {
     // 第一条
     studentDF.first()
     // 前三条
-    studentDF.head(3)
+    studentDF.head(3).foreach(println)
     // 获取指定列
     studentDF.select("name", "email").show(30, false)
-    // 过滤
+    // 找到 name='' 的数据
     studentDF.filter("name=''").show()
     studentDF.filter("name='' OR name='NULL'").show()
     // name以'M'开头的数据 substr 或者 substring 截取
