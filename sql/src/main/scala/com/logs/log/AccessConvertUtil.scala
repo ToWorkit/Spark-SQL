@@ -3,7 +3,6 @@ package com.logs.log
 import org.apache.spark.sql.Row
 import org.apache.spark.sql.types.{LongType, StringType, StructField, StructType}
 
-
 /**
   * ==> 转换
   * 访问日志转换(输入 ==> 输出)工具类
