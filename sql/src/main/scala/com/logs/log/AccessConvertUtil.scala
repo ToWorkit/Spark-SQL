@@ -43,7 +43,7 @@ object AccessConvertUtil {
       val cmsTypeId = cms.split("/")
 
       /*    val cmsType = ""
-          // 零 L Long类型
+          // 0 L Long类型
           val cmsId = 0l*/
 
       var cmsType = ""
