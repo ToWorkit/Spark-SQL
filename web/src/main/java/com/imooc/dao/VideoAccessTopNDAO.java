@@ -55,6 +55,7 @@ public class VideoAccessTopNDAO {
 
         try {
             connection = MySQLUtils.getConnection();
+			// 格式化
             String sql = "select cms_id, times from day_video_access_topn_stat where day = ? order by times desc limit 5";
             pstmt = connection.prepareStatement(sql);
             // 设置 ? 的值
